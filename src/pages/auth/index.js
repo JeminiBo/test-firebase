@@ -2,17 +2,33 @@ import React, {useEffect} from 'react';
 import {View, Button} from 'react-native';
 import {getAllDataFromDb} from '../../firebase/helpers';
 import auth from '@react-native-firebase/auth';
+import functions, {firebase} from '@react-native-firebase/functions';
+import storage from '@react-native-firebase/storage';
+
+firebase.functions().useEmulator('localhost', 5001);
 
 export const Auth = () => {
+  useEffect(() => {
+    checkAppCheck();
+    getImageUrl();
+  }, []);
+  const checkAppCheck = async () => {
+    try {
+      const {token} = await firebase.appCheck().getToken(true);
+
+      if (token.length > 0) {
+        console.log('AppCheck verification passed');
+      }
+    } catch (error) {
+      console.log('AppCheck verification failed');
+    }
+  };
   const authUser = () => {
-    console.log('START AUTH');
     auth()
-      .signInWithEmailAndPassword(
-        'jane.doe@example.com',
-        'SuperSecretPassword!',
-      )
-      .then(data => {
+      .signInWithEmailAndPassword('joikervik@gmail.com', 'SuperSecretPassword!')
+      .then(async data => {
         console.log('User account created & signed in!', data);
+        addAdminRoleToUser();
         getAllDataFromDb('projects').then(data => console.log('DATA', data));
       })
       .catch(error => {
@@ -26,6 +42,23 @@ export const Auth = () => {
 
         console.error(error);
       });
+  };
+
+  const addAdminRoleToUser = async (email = 'joikervik@gmail.com') => {
+    await functions().httpsCallable('addAdminRole')({
+      email,
+    });
+    const idTokenResult = await firebase.auth().currentUser.getIdTokenResult();
+
+    const isAdminUser = idTokenResult.claims?.admin;
+    console.log('IS ADMIN', isAdminUser);
+  };
+
+  const getImageUrl = async () => {
+    const url = await storage()
+      .ref('Screenshot from 2023-05-07 12-28-30.png')
+      .getDownloadURL();
+    console.log('URL', url);
   };
 
   return (
