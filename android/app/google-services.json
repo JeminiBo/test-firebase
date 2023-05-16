@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "443646832281",
+    "project_id": "testiap-f12d4",
+    "storage_bucket": "testiap-f12d4.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:443646832281:android:c5b8bf23e30cb063e3d208",
+        "android_client_info": {
+          "package_name": "com.testiap"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "443646832281-rmagi8ko9jss882j0t4sl8acbe9cnikt.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDD8_9iKfDHO2ni3zuiihaWxmw8sjS7vcU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "443646832281-rmagi8ko9jss882j0t4sl8acbe9cnikt.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
