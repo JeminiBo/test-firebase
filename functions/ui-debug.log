@@ -1,2 +1,4 @@
 Web / API server started at 127.0.0.1:4000
 Web / API server started at ::1:4000
+/usr/local/bin/firebase[11242]: ../src/node.cc:762:void node::ResetStdio(): Assertion `!(err != 0) || (err == -1 && (*__errno_location ()) == 1)' failed.
+/usr/local/bin/firebase[11242]: ../src/node.cc:762:void node::ResetStdio(): Assertion `!(err != 0) || (err == -1 && (*__errno_location ()) == 1)' failed.
